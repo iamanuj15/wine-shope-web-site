@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANUJ WINE | Premium Wine Selection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary-dark: #745045;
+            --primary-light: #956655;
+            --accent: #8b4343;
+            --gold: #FFD700;
+            --cream: #f7ebde;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--cream);
+            color: #333;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(93, 64, 55, 0.8), rgba(93, 64, 55, 0.8)), url('bg.png');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .wine-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .wine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .cart-notification {
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <h1 class="playfair text-2xl font-bold text-[var(--primary-dark)]">ANUJ WINE </h1>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-[var(--accent)] transition-colors">Home</a>
+                    <a href="#wines" class="text-gray-700 hover:text-[var(--accent)] transition-colors">Wines</a>
+                    <a href="#categories" class="text-gray-700 hover:text-[var(--accent)] transition-colors">Categories</a>
+                    <a href="#about" class="text-gray-700 hover:text-[var(--accent)] transition-colors">About</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="cart-btn" class="text-gray-700 hover:text-[var(--accent)]">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span id="cart-count" class="absolute -top-2 -right-2 bg-[var(--accent)] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                        </button>
+                    </div>
+                    <button class="md:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="playfair text-4xl md:text-6xl font-bold mb-6">Discover Exceptional Wines</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Curated selection of premium wines from renowned vineyards around the world</p>
+            <button class="bg-[var(--accent)] hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                Explore Collection
+            </button>
+        </div>
+    </section>
+
+    <!-- Featured Wines -->
+    <section id="wines" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="playfair text-3xl font-bold text-center mb-12 text-[var(--primary-dark)]">Featured Wines</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Wine Card 1 -->
+                <div class="wine-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 bg-gray-100 flex items-center justify-center p-4">
+                        <img src="1.png" alt="Premium Cabernet Sauvignon bottle with deep red wine in a rustic wine cellar setting" class="h-56 object-contain" onerror="this.style.display='none'; this.parentElement.style.background='#f3f4f6'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-semibold mb-2">Reserve Cabernet</h3>
+                        <p class="text-gray-600 mb-3">Napa Valley, 2019</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[var(--gold)]">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-2">4.8 (124)</span>
+                        </div>
+                        <p class="text-2xl font-bold text-[var(--primary-dark)] mb-4">$ 89.99</p>
+                        <button class="add-to-cart w-full bg-[var(--primary-dark)] hover:bg-[var(--primary-light)] text-white py-2 rounded transition-colors" data-name="Reserve Cabernet" data-price="89.99">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wine Card 2 -->
+                <div class="wine-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 bg-gray-100 flex items-center justify-center p-4">
+                        <img src="1.png" alt="Elegant bottle of Chardonnay with golden wine in a sunlit vineyard backdrop" class="h-56 object-contain" onerror="this.style.display='none'; this.parentElement.style.background='#f3f4f6'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-semibold mb-2">Estate Chardonnay</h3>
+                        <p class="text-gray-600 mb-3">Sonoma County, 2020</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[var(--gold)]">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-2">4.9 (98)</span>
+                        </div>
+                        <p class="text-2xl font-bold text-[var(--primary-dark)] mb-4">$ 64.99</p>
+                        <button class="add-to-cart w-full bg-[var(--primary-dark)] hover:bg-[var(--primary-light)] text-white py-2 rounded transition-colors" data-name="Estate Chardonnay" data-price="64.99">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wine Card 3 -->
+                <div class="wine-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 bg-gray-100 flex items-center justify-center p-4">
+                        <img src="1.png" alt="Bottle of Pinot Noir with rich red wine against a backdrop of Oregon wine country" class="h-56 object-contain" onerror="this.style.display='none'; this.parentElement.style.background='#f3f4f6'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-semibold mb-2">Willamette Pinot</h3>
+                        <p class="text-gray-600 mb-3">Oregon, 2021</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[var(--gold)]">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-2">4.2 (76)</span>
+                        </div>
+                        <p class="text-2xl font-bold text-[var(--primary-dark)] mb-4">$ 59.99</p>
+                        <button class="add-to-cart w-full bg-[var(--primary-dark)] hover:bg-[var(--primary-light)] text-white py-2 rounded transition-colors" data-name="Willamette Pinot" data-price="54.99">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wine Card 4 -->
+                <div class="wine-card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-64 bg-gray-100 flex items-center justify-center p-4">
+                        <img src="1.png" alt="Sparkling Prosecco bottle with bubbles in a festive setting with wine glasses" class="h-56 object-contain" onerror="this.style.display='none'; this.parentElement.style.background='#f3f4f6'">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-semibold mb-2">Italian Prosecco</h3>
+                        <p class="text-gray-600 mb-3">Veneto, 2022</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-[var(--gold)]">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-2">4.6 (112)</span>
+                        </div>
+                        <p class="text-2xl font-bold text-[var(--primary-dark)] mb-4">$ 39.99 </p>
+                        <button class="add-to-cart w-full bg-[var(--primary-dark)] hover:bg-[var(--primary-light)] text-white py-2 rounded transition-colors" data-name="Italian Prosecco" data-price="39.99">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="playfair text-3xl font-bold text-center mb-12">Explore by Category</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card text-center p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-wine-bottle text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Red Wines</h3>
+                    <p class="text-sm opacity-80">Bold & Complex</p>
+                </div>
+                
+                <div class="category-card text-center p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-wine-glass-alt text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">White Wines</h3>
+                    <p class="text-sm opacity-80">Crisp & Refreshing</p>
+                </div>
+                
+                <div class="category-card text-center p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-glass-cheers text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Sparkling</h3>
+                    <p class="text-sm opacity-80">Celebratory Bubbles</p>
+                </div>
+                
+                <div class="category-card text-center p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-globe-americas text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">International</h3>
+                    <p class="text-sm opacity-80">Global Selection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="py-16 bg-[var(--cream)]">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2">
+                        <div class="h-64 md:h-full bg-gray-100 flex items-center justify-center">
+                            <img src="logo.png" alt="Wine tasting event with multiple bottles and glasses arranged on a wooden table" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.style.background='#f3f4f6'">
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                        <h2 class="playfair text-3xl font-bold text-[var(--primary-dark)] mb-4">Special Wine Tasting Event</h2>
+                        <p class="text-gray-600 mb-6">Join us for an exclusive tasting of our new vintage collection. Meet the winemakers and discover hidden gems.</p>
+                        <div class="flex items-center mb-6">
+                            <div class="bg-[var(--accent)] text-white px-4 py-2 rounded-lg mr-4">
+                                <span class="block text-sm">WHEN</span>
+                                <span class="font-semibold">Dec 15, 2023</span>
+                            </div>
+                            <div class="bg-[var(--primary-dark)] text-white px-4 py-2 rounded-lg">
+                                <span class="block text-sm">WHERE</span>
+                                <span class="font-semibold">Our Tasting Room</span>
+                            </div>
+                        </div>
+                        <button class="bg-[var(--primary-dark)] hover:bg-[var(--primary-light)] text-white px-8 py-3 rounded-full font-semibold transition-colors w-full md:w-auto">
+                            Reserve Your Spot
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--primary-dark)] text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="playfair text-xl font-semibold mb-4">Vino Elegance</h3>
+                    <p class="text-gray-300">Curating exceptional wines from around the world for the discerning palate.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Red Wines</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">White Wines</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Sparkling</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Special Offers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Information</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Shipping</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Returns</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Connected</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <p class="text-gray-300">Subscribe to our newsletter</p>
+                    <div class="mt-2 flex">
+                        <input type="email" placeholder="Your email" class="px-3 py-2 bg-white/10 border border-white/20 rounded-l focus:outline-none focus:border-white/50">
+                        <button class="bg-[var(--accent)] px-4 py-2 rounded-r">→</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 Vino Elegance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="absolute right-0 top-0 h-full w-full md:w-96 bg-white shadow-xl">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="playfair text-2xl font-bold">Your Cart</h2>
+                    <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="cart-items" class="space-y-4 mb-6">
+                    <!-- Cart items will be dynamically added here -->
+                    <div class="text-center py-8 text-gray-500" id="empty-cart">
+                        <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                
+                <div id="cart-total" class="border-t pt-4 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-semibold">Total:</span>
+                        <span id="total-amount" class="text-xl font-bold">$0.00</span>
+                    </div>
+                    <button class="w-full bg-[var(--primary-dark)] hover:bg-[var(--primary-light)] text-white py-3 rounded font-semibold transition-colors">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hidden cart-notification">
+        Item added to cart!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = [];
+            const cartBtn = document.getElementById('cart-btn');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCart = document.getElementById('close-cart');
+            const cartItems = document.getElementById('cart-items');
+            const emptyCart = document.getElementById('empty-cart');
+            const cartTotal = document.getElementById('cart-total');
+            const totalAmount = document.getElementById('total-amount');
+            const cartCount = document.getElementById('cart-count');
+            const notification = document.getElementById('notification');
+            
+            // Add to cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const name = this.dataset.name;
+                    const price = parseFloat(this.dataset.price);
+                    
+                    // Check if item already in cart
+                    const existingItem = cart.find(item => item.name === name);
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cart.push({
+                            name: name,
+                            price: price,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    showNotification();
+                });
+            });
+            
+            // Show/hide cart modal
+            cartBtn.addEventListener('click', function() {
+                cartModal.classList.remove('hidden');
+            });
+            
+            closeCart.addEventListener('click', function() {
+                cartModal.classList.add('hidden');
+            });
+            
+            // Close modal when clicking outside
+            cartModal.addEventListener('click', function(e) {
+                if (e.target === cartModal) {
+                    cartModal.classList.add('hidden');
+                }
+            });
+            
+            function updateCart() {
+                // Update cart count
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                
+                // Update cart items display
+                if (cart.length === 0) {
+                    emptyCart.classList.remove('hidden');
+                    cartTotal.classList.add('hidden');
+                } else {
+                    emptyCart.classList.add('hidden');
+                    cartTotal.classList.remove('hidden');
+                    
+                    cartItems.innerHTML = '';
+                    let total = 0;
+                    
+                    cart.forEach((item, index) => {
+                        const itemTotal = item.price * item.quantity;
+                        total += itemTotal;
+                        
+                        const cartItem = document.createElement('div');
+                        cartItem.className = 'flex justify-between items-center border-b pb-4';
+                        cartItem.innerHTML = `
+                            <div>
+                                <h4 class="font-semibold">${item.name}</h4>
+                                <p class="text-gray-600">${item.price.toFixed(2)} x ${item.quantity}</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-semibold">$${itemTotal.toFixed(2)}</span>
+                                <button class="remove-item text-red-500 hover:text-red-700" data-index="${index}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                        cartItems.appendChild(cartItem);
+                    });
+                    
+                    totalAmount.textContent = `${total.toFixed(2)}`;
+                    
+                    // Add event listeners to remove buttons
+                    document.querySelectorAll('.remove-item').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const index = parseInt(this.dataset.index);
+                            cart.splice(index, 1);
+                            updateCart();
+                        });
+                    });
+                }
+            }
+            
+            function showNotification() {
+                notification.classList.remove('hidden');
+                setTimeout(() => {
+                    notification.classList.add('hidden');
+                }, 3000);
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
